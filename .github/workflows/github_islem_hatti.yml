@@ -1,4 +1,4 @@
-name: Vaka Çalışması Senaryo1 IAC Pipeline
+name: Vaka Çalışması Senaryo1 IAC İşlem Hattı
 run-name: ${{ github.actor }} Mern - Kubernetes - IAC İşlem Hattı 🚀
 on:
   workflow_dispatch:

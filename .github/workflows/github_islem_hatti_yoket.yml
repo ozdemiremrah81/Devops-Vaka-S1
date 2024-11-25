@@ -1,5 +1,5 @@
-name: Vaka Çalışması Senaryo1 IAC Pipeline
-run-name: ${{ github.actor }} Mern - Kubernetes - IAC İşlem Hattı 🚀
+name: Vaka Çalışması Senaryo1 IAC İşlem Hattı -Kaynakları Sil
+run-name: ${{ github.actor }} Mern - Kubernetes - IAC İşlem Hattı Kaynakları Yok et!🚀
 on:
   workflow_dispatch:
 permissions:

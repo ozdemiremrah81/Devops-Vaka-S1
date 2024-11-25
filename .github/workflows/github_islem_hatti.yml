@@ -1,5 +1,5 @@
-name: Vaka1 IAC Pipeline
-run-name: ${{ github.actor }} Vaka1\Senaryo1 - Mern on Kubernetes - IAC İşlem Hattı 🚀
+name: Vaka Çalışması Senaryo1 IAC Pipeline
+run-name: ${{ github.actor }} Mern - Kubernetes - IAC İşlem Hattı 🚀
 on:
   workflow_dispatch:
 permissions:

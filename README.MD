@@ -1,1 +1,1 @@
-# Vaka1 Dokümantasyon
+# DevOps Vaka Belgeleri

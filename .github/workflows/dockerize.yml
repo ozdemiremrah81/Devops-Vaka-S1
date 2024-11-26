@@ -1,9 +1,7 @@
 name: k3s uzerinde dockerize et
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -26,6 +24,10 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
 
+    - name: Add host key to known_hosts
+      run: |
+          ssh-keyscan -H ${{ vars.PUBLIC_IP }} >> ~/.ssh/known_hosts
+      
     - name: Copy source code to k3s_masternode
       run: |
         scp -i ~/.ssh/id_rsa -r . ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app

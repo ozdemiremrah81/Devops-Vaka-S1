@@ -5,10 +5,8 @@ services:
       context: ./server
     ports:
       - "5050:5050"
-    env_file:
-      - .env
     environment:
-      - MONGO_URI=mongodb://mongo:27017/mern
+      - ATLAS_URI= ${ATLAS_URI}
     depends_on:
       - mongo
 

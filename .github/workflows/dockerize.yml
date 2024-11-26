@@ -2,6 +2,8 @@ name: k3s_masternode uzerinde Dockerize et
 
 on:
     workflow_dispatch:
+env:
+  AWS_REGION: "eu-north-1"
 
 jobs:
   dockerize:
@@ -26,13 +28,11 @@ jobs:
 
     - name: Copy source code to k3s_masternode
       run: |
-        INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=k3s_masternode" --query "Reservations[*].Instances[*].InstanceId" --output text)
-        PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
-        scp -i ~/.ssh/id_rsa -r . ubuntu@$PUBLIC_IP:/home/ubuntu/app
+        scp -i ~/.ssh/id_rsa -r . ubuntu@${{ secrets.PUBLIC_IP }}:/home/ubuntu/app
 
     - name: Install Docker and Docker Compose on k3s_masternode
       run: |
-        ssh -i ~/.ssh/id_rsa ubuntu@$PUBLIC_IP << 'EOF'
+        ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.PUBLIC_IP }} << 'EOF'
           sudo apt-get update -y
           sudo apt-get install -y docker.io
           sudo systemctl start docker
@@ -43,7 +43,7 @@ jobs:
 
     - name: Build and deploy Docker Compose on k3s_masternode
       run: |
-        ssh -i ~/.ssh/id_rsa ubuntu@$PUBLIC_IP << 'EOF'
+        ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.PUBLIC_IP }} << 'EOF'
           cd /home/ubuntu/app
           docker-compose up -d --build
         EOF

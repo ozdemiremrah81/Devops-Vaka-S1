@@ -27,9 +27,10 @@ jobs:
     - name: Add host key to known_hosts
       run: |
           ssh-keyscan -H ${{ vars.PUBLIC_IP }} >> ~/.ssh/known_hosts
-      
+    
     - name: Copy source code to k3s_masternode
       run: |
+        ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} "mkdir -p /home/ubuntu/app" && \
         scp -i ~/.ssh/id_rsa -r {.,}* ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
 
     - name: Install Docker and Docker Compose on k3s_masternode

@@ -1,4 +1,4 @@
-name: Dockerize on k3s_masternode
+name: k3s_masternode uzerinde Dockerize et
 
 on:
     workflow_dispatch:

@@ -1,0 +1,49 @@
+name: Deploy to k3s_masternode
+
+on:
+    workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Set up SSH key
+      run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+    - name: Copy source code to k3s_masternode
+      run: |
+        INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=k3s_masternode" --query "Reservations[*].Instances[*].InstanceId" --output text)
+        PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
+        scp -i ~/.ssh/id_rsa -r . ubuntu@$PUBLIC_IP:/home/ubuntu/app
+
+    - name: Install Docker and Docker Compose on k3s_masternode
+      run: |
+        ssh -i ~/.ssh/id_rsa ubuntu@$PUBLIC_IP << 'EOF'
+          sudo apt-get update -y
+          sudo apt-get install -y docker.io
+          sudo systemctl start docker
+          sudo usermod -aG docker ubuntu
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+        EOF
+
+    - name: Build and deploy Docker Compose on k3s_masternode
+      run: |
+        ssh -i ~/.ssh/id_rsa ubuntu@$PUBLIC_IP << 'EOF'
+          cd /home/ubuntu/app
+          docker-compose up -d --build
+        EOF

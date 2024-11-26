@@ -5,8 +5,8 @@ services:
       context: ./server
     ports:
       - "5050:5050"
-    environment:
-      - ATLAS_URI= ${ATLAS_URI}
+    env_file:
+      - .env
     depends_on:
       - mongo
 

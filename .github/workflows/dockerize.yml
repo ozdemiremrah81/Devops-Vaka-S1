@@ -32,7 +32,6 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} "mkdir -p /home/ubuntu/app" && \
         rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
-
     - name: Install Docker and Docker Compose on k3s_masternode
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
@@ -43,10 +42,9 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
         EOF
-
     - name: Build and deploy Docker Compose on k3s_masternode
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           cd /home/ubuntu/app
-          docker-compose up -d --build
+          ATLAS_URI=${{ secrets.ATLAS_URI }} docker-compose up -d --build
         EOF

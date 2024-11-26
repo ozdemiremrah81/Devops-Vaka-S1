@@ -30,7 +30,7 @@ jobs:
       
     - name: Copy source code to k3s_masternode
       run: |
-        scp -i ~/.ssh/id_rsa -r . ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
+        scp -i ~/.ssh/id_rsa -r {.,}* ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
 
     - name: Install Docker and Docker Compose on k3s_masternode
       run: |

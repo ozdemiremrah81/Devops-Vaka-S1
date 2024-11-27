@@ -3,8 +3,8 @@ services:
   server:
     build:
       context: ./server
-    environment:
-      - ATLAS_URI=${ATLAS_URI}
+    #environment:
+      #- ATLAS_URI=${ATLAS_URI}
     ports:
       - "5050:5050"
     depends_on:

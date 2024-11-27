@@ -4,6 +4,8 @@ services:
       context: ./server
     environment:
       - ATLAS_URI=${ATLAS_URI}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "5050:5050"
     depends_on:

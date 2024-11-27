@@ -1,5 +1,5 @@
-output "k3s_master_public_ip" {
-  value = aws_instance.k3s_masternode.public_ip
+output "n2_Server1_public_ip" {
+  value = aws_instance.n2_Server1.public_ip
 }
 
 # outputs.tf

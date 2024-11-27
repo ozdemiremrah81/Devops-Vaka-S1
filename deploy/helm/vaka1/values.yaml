@@ -25,5 +25,5 @@ mongo:
 
 env:
   REACT_APP_PORT: 3000
-  REACT_APP_API_URL: http://localhost:4600
+  REACT_APP_API_URL: http://51.20.128.199:4600
   APP_SERVER_PORT: 4600

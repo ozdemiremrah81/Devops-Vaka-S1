@@ -1,6 +1,6 @@
 # K3S MasterNode in private subnet1
-resource "aws_instance" "k3s_masternode" {
-  ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
+resource "aws_instance" "n2_Server1" {
+  ami           = "ami-075449515af5df0d1"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type              # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # private subnet1
 
@@ -11,7 +11,7 @@ resource "aws_instance" "k3s_masternode" {
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]
 
   tags = {
-    Name = "k3s-masternode"
+    Name = "k3s-1"
   }
 
  user_data = <<-EOF
@@ -39,8 +39,8 @@ resource "aws_instance" "k3s_masternode" {
   #value     = tls_private_key.k3s_key.private_key_pem
   #sensitive = true
 #}
-resource "aws_instance" "bastion" {
-  ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
+resource "aws_instance" "n2_bastion" {
+  ami           = "ami-075449515af5df0d1"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type_bastion              # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # 
 

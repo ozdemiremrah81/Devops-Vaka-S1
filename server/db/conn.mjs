@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = "mongodb://localhost:27017";
+const connectionString = "mongodb://vaka1-mongo:27017";
 const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let db;

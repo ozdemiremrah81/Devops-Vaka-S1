@@ -42,5 +42,5 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           cd /home/ubuntu/app/deploy/helm
-          helm install vaka1 .\vaka1
+          helm install vaka1 ./vaka1
         EOF

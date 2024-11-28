@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString ="mongodb://10.1.6.223:27017";
+const connectionString ="mongodb://localhost:27017";
 const client = new MongoClient(connectionString);
 
 let conn;

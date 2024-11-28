@@ -1,4 +1,4 @@
-name: k3s uzerinde dockerize et
+name: Helm Install
 
 on:
   workflow_dispatch:

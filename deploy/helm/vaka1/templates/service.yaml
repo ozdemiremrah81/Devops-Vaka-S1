@@ -7,20 +7,20 @@ spec:
     app: {{ .Release.Name }}-server
   ports:
   - protocol: TCP
-    port: 4600
-    targetPort: 4600
+    port: 5050
+    targetPort: 5050
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-app
+  name: {{ .Release.Name }}-client
 spec:
   selector:
-    app: {{ .Release.Name }}-app
+    app: {{ .Release.Name }}-client
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 80              # External port
+    port: 3000              # External port
     targetPort: 3000      # Internal container port
 ---
 apiVersion: v1

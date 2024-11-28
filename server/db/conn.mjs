@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = process.env.ATLAS_URI || "mongodb://host.docker.internal:27017";
+const connectionString = process.env.ATLAS_URI || "mongodb://10.1.6.223:27017";
 const client = new MongoClient(connectionString);
 
 let conn;

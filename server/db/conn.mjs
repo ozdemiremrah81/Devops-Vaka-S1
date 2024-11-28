@@ -1,16 +1,22 @@
 import { MongoClient } from "mongodb";
 
-const connectionString ="mongodb://localhost:27017";
-const client = new MongoClient(connectionString);
+const connectionString = "mongodb://localhost:27017";
+const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let conn;
-try {
-  console.log("Connecting to MongoDB Atlas...");
-  conn = await client.connect();
-} catch (e) {
-  console.error(e);
+let db;
+
+async function connectToDatabase() {
+  try {
+    console.log("Connecting to MongoDB...");
+    await client.connect();
+    db = client.db("sample_training");
+    console.log("Successfully connected to MongoDB");
+  } catch (e) {
+    console.error("Error connecting to MongoDB:", e);
+    process.exit(1); // Exit the process with an error code
+  }
 }
 
-let db = conn.db("sample_training");
+await connectToDatabase();
 
 export default db;

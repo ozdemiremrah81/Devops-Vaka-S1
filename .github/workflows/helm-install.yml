@@ -32,19 +32,15 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} "mkdir -p /home/ubuntu/app" && \
         rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
-    - name: Install Docker and Docker Compose on k3s_masternode
+    - name: Install Helm
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
-          sudo apt-get update -y
-          sudo apt-get install -y docker.io
-          sudo systemctl start docker
-          sudo usermod -aG docker ubuntu
-          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
+          sudo apt update
+          sudo snap install helm --classic
         EOF
-    - name: Build and deploy Docker Compose on k3s_masternode
+    - name: Build and deploy the application
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
-          cd /home/ubuntu/app
-          ATLAS_URI=${{ secrets.ATLAS_URI }} docker-compose up -d --build
+          cd /home/ubuntu/app/deploy/helm
+          helm install vaka1 .\vaka1
         EOF

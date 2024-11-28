@@ -1,29 +1,29 @@
 server:
   image:
-    repository: ozdemiremrah81/emrah-mern-server
-    tag: v2
+    repository: ozdemiremrah81/server
+    tag: latest
     pullPolicy: IfNotPresent
-  port: 5000
+  port: 5050
 
-app:
+client:
   image:
-    repository:  ozdemiremrah81/emrah-mern-client
-    tag: v2
+    repository:  ozdemiremrah81/client
+    tag: latest
     pullPolicy: IfNotPresent
   port: 3000
 
 mongo:
   image:
-    repository: ozdemiremrah81/emrah-mern-mongo
-    tag: v1
+    repository: mongo
+    tag: latest
     pullPolicy: IfNotPresent
   environment:
     MONGO_INITDB_ROOT_USERNAME: homestead
     MONGO_INITDB_ROOT_PASSWORD: secret
-    MONGO_INITDB_DATABASE: simple-mern
+    MONGO_INITDB_DATABASE: simple-69696mern
   volume: mongodata
 
 env:
   REACT_APP_PORT: 3000
-  REACT_APP_API_URL: http://localhost:4600
-  APP_SERVER_PORT: 4600
+  REACT_APP_API_URL: http://localhost:5050
+  APP_SERVER_PORT: 5050

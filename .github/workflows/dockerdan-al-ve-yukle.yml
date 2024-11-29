@@ -1,0 +1,16 @@
+name: Triggered by Docker Hub
+
+on:
+  repository_dispatch:
+    types:
+      - dockerhub-image-built
+
+jobs:
+  trigger-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Pipeline
+        run: echo "Pipeline triggered by Docker Hub image build."

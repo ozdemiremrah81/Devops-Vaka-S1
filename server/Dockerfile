@@ -17,5 +17,11 @@ ARG APP_SERVER_PORT
 
 ENV PORT $APP_SERVER_PORT
 
+# Accept build-time argument
+ARG BACKEND_SERVER
+
+# Set it as an environment variable
+ENV BACKEND_SERVER=$BACKEND_SERVER
+
 # Define the command to run the app
 CMD ["npm", "start"]

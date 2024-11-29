@@ -49,6 +49,8 @@ spec:
         env:
         - name: REACT_APP_API_URL
           value: "{{ .Values.env.REACT_APP_API_URL }}"
+        - name: REACT_APP_BACKEND_SERVER
+          value: "{{ .Values.env.REACT_APP_BACKEND_SERVER }}"
 ---
 apiVersion: apps/v1
 kind: Deployment

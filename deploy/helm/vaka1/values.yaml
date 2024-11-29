@@ -27,3 +27,4 @@ env:
   REACT_APP_PORT: 3000
   REACT_APP_API_URL: http://16.16.163.150/:5050
   APP_SERVER_PORT: 5050
+  REACT_APP_BACKEND_SERVER: http://vaka1-server:5050/healthcheck/

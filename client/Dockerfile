@@ -1,6 +1,9 @@
 # Use Node.js for building the app
 FROM node:18-alpine as build
 
+# Set environment variables
+ENV REACT_APP_BACKEND_SERVER=http://localhost:5050/healthcheck/
+
 # Set the working directory
 WORKDIR /usr/src/app
 
@@ -20,11 +23,8 @@ RUN npm run build
 FROM nginx:alpine
 
 RUN rm -rf /usr/share/nginx/html/*
-
 # Copy the built app to the Nginx default directory
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
-
-# Expose the port for the app
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

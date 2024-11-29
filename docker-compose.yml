@@ -9,7 +9,8 @@ services:
       - server
     networks:
       - app-network
-
+    environment:
+      - REACT_APP_BACKEND_SERVER=http://localhost:5050/healthcheck/
   server:
     build:
       context: ./server

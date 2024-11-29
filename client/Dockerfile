@@ -19,11 +19,12 @@ RUN npm run build
 # Use a lightweight web server to serve the app
 FROM nginx:alpine
 
+RUN rm -rf /usr/share/nginx/html/*
+
 # Copy the built app to the Nginx default directory
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
 # Expose the port for the app
-EXPOSE 80
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

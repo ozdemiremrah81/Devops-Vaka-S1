@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -39,6 +40,8 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
         EOF
+    - name: Wait for 5 minutes
+      run: sleep 300
     - name: Build and deploy the application
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'

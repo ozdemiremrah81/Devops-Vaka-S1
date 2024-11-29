@@ -36,9 +36,8 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           sudo apt update
-          sudo snap install core
-          sudo snap refresh core
-          sudo snap install helm --classic
+          curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
         EOF
     - name: Build and deploy the application
       run: |

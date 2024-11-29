@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/record", records);
 app.use("/healthcheck", healthcheck);
 
-// start the Express server2
+// start the Express server4
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });

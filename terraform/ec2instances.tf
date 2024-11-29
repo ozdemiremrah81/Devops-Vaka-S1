@@ -48,6 +48,7 @@ resource "aws_instance" "bastion" {
 
   # Attach the private Security Group
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
+  associate_public_ip_address = true  # Ensure public IP for SSH access
 
   tags = {
     Name = "bastion"

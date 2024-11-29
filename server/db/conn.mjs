@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = "mongodb://vaka1-mongo:27017";
+const connectionString = "mongodb+srv://ozdemiremrah81:CXudzbhhebZjvJTT@emongo1.nkcxp.mongodb.net/?retryWrites=true&w=majority&appName=emongo1";
 const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let db;

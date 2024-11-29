@@ -36,6 +36,8 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           sudo apt update
+          sudo snap install core
+          sudo snap refresh core
           sudo snap install helm --classic
         EOF
     - name: Build and deploy the application

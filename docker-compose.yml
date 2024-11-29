@@ -1,27 +1,38 @@
 services:
-  server:
-    build:
-      context: ./server
-    environment:
-      - ATLAS_URI=${ATLAS_URI}
-    ports:
-      - "5050:5050"
-    depends_on:
-      - mongo
-
   client:
     build:
       context: ./client
+      dockerfile: Dockerfile
     ports:
-      - "3000:80"
+      - "3000:80" # Map local port 3000 to the client's exposed port
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5050:5050" # Map local port 5050 to the server's exposed port
+    depends_on:
+      - mongo
+    networks:
+      - app-network
 
   mongo:
     image: mongo:5
     container_name: mongo
     ports:
-      - "27017:27017"
+      - "27017:27017" # Map local port 27017 to MongoDB's default port
     volumes:
       - mongo-data:/data/db
+    networks:
+      - app-network
 
 volumes:
-  mongo-data:
+  mongo-data: # Persistent storage for MongoDB
+
+networks:
+  app-network: # Shared network for inter-container communication

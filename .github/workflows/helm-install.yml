@@ -42,6 +42,7 @@ jobs:
     - name: Build and deploy the application
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
+          export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
           cd /home/ubuntu/app/deploy/helm
           helm install vaka1 ./vaka1
         EOF

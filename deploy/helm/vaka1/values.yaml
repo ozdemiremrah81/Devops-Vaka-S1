@@ -2,14 +2,14 @@ server:
   image:
     repository: ozdemiremrah81/server
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: always
   port: 5050
 
 client:
   image:
     repository:  ozdemiremrah81/client
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: always
   port: 3000
 
 mongo:

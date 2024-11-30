@@ -19,7 +19,7 @@ resource "aws_instance" "k3s_masternode" {
               curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --tls-san $(curl http://169.254.169.254/latest/meta-data/public-ipv4)
               EOF
 
-  # Attach the key pair to the instance for SSH access
+  # 2Attach the key pair to the instance for SSH access
   #connection {
     #type        = "ssh"
     #user        = "ubuntu"

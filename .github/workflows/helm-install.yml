@@ -41,7 +41,7 @@ jobs:
 
         EOF
     - name: Wait for 5 minutes
-      run: sleep 300
+      run: sleep 1
     - name: Build and deploy the application
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'

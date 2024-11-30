@@ -18,12 +18,8 @@ jobs:
       working-directory: ./client
       run: npm ci
 
-    - name: Install dependencies for server
-      working-directory: ./server
-      run: npm ci
-
     - name: Run Cypress tests
       uses: cypress-io/github-action@v5
       with:
         browser: chrome
-        working-directory: ./server
+        working-directory: ./client

@@ -22,6 +22,9 @@ RUN npm run build
 # Use a lightweight web server to serve the app
 FROM nginx:alpine
 
+# Add custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 RUN rm -rf /usr/share/nginx/html/*
 # Copy the built app to the Nginx default directory
 COPY --from=build /usr/src/app/build /usr/share/nginx/html

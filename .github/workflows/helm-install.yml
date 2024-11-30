@@ -46,6 +46,10 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+          echo "alias k='kubectl'" >> ~/.bash_aliases
+          echo "alias kp='kubectl get pods'" >> ~/.bash_aliases
+          echo "alias ks='kubectl get services'" >> ~/.bash_aliases
+          source ~/.bashrc
           cd /home/ubuntu/app/deploy/helm
           helm uninstall vaka1
           helm install vaka1 ./vaka1

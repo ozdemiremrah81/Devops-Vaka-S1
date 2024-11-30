@@ -1,19 +1,13 @@
-describe('API Interception Example', () => {
-  it('Intercepts API calls', () => {
-    // Intercept GET requests to the API endpoint
-    cy.intercept('GET', '**/api/*', (req) => {
-      req.on('response', (res) => {
-        console.log('Intercepted Response:', res);
-      });
+describe('Validate API response directly', () => {
+  it('Check API response', () => {
+    cy.request('GET', '/records').then((response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body.data).to.have.length(2);
+      expect(response.body.data[0]).to.have.property('name', 'John Doe');
     });
-
-    // Navigate to the page that triggers the API call
-    cy.visit('/dashboard');
-
-    // Perform additional assertions if needed
-    cy.contains('Dashboard').should('exist');
   });
 });
+
 describe("Web site availability", () => {
   after(() => {
     cy.contains("Delete").click({ force: true });

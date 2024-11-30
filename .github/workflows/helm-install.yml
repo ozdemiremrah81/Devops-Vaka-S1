@@ -29,7 +29,7 @@ jobs:
       run: |
           ssh-keyscan -H ${{ vars.PUBLIC_IP }} >> ~/.ssh/known_hosts
     
-    - name: Copy source code to k3s_masternode
+    - name: Copy source code to  vaka1-appserver-test
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} "mkdir -p /home/ubuntu/app" && \
         rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app

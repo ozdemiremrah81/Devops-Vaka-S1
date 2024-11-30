@@ -28,11 +28,11 @@ jobs:
       run: |
           ssh-keyscan -H ${{ vars.PUBLIC_IP }} >> ~/.ssh/known_hosts
     
-    - name: Copy source code to k3s_masternode
+    - name: Copy source code to  vaka1-appserver-test
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} "mkdir -p /home/ubuntu/app" && \
         rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ubuntu@${{ vars.PUBLIC_IP }}:/home/ubuntu/app
-    - name: Install Docker and Docker Compose on k3s_masternode
+    - name: Install Docker and Docker Compose on  vaka1-appserver-test
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           sudo apt-get update -y
@@ -42,7 +42,7 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
         EOF
-    - name: Build and deploy Docker Compose on k3s_masternode
+    - name: Build and deploy Docker Compose on  vaka1-appserver-test
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ vars.PUBLIC_IP }} << 'EOF'
           cd /home/ubuntu/app

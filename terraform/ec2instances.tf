@@ -1,5 +1,5 @@
 # K3S MasterNode in private subnet1
-resource "aws_instance" "k3s_masternode" {
+resource "aws_instance" "vaka1-appserver-test" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type              # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # private subnet1
@@ -11,7 +11,7 @@ resource "aws_instance" "k3s_masternode" {
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]
 
   tags = {
-    Name = "k3s-masternode"
+    Name = "vaka1-appserver-test"
   }
 
  user_data = <<-EOF

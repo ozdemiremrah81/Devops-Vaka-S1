@@ -1,5 +1,5 @@
 output "k3s_master_public_ip" {
-  value = aws_instance.k3s_masternode.public_ip
+  value = aws_instance. vaka1-appserver-test.public_ip
 }
 
 # outputs.tf

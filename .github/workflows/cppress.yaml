@@ -27,4 +27,3 @@ jobs:
       with:
         spec: client/cypress/integration/endToEnd.spec.js
         browser: chrome
-        headless: true

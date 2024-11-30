@@ -24,3 +24,10 @@ jobs:
       with:
         browser: electron
         working-directory: ./client
+
+    - name: Upload screenshots
+      if: always() # Run this step even if tests fail
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots
+        path: ./client/cypress/screenshots

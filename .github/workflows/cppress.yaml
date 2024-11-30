@@ -22,5 +22,5 @@ jobs:
     - name: Run Cypress tests
       uses: cypress-io/github-action@v5
       with:
-        browser: chrome
+        browser: chromium
         working-directory: ./client

@@ -14,16 +14,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install dependencies
+    - name: Install dependencies for client
+      working-directory: ./client
       run: npm ci
 
-    - name: Run specific Cypress test
+    - name: Install dependencies for server
+      working-directory: ./server
+      run: npm ci
+
+    - name: Run Cypress tests
       uses: cypress-io/github-action@v5
       with:
-        spec: client/cypress/integration/endToEnd.spec.js
+        working-directory: ./client
+        spec: cypress/integration/endtoend.spec.js
         browser: chrome

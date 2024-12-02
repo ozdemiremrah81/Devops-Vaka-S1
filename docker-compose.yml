@@ -11,6 +11,7 @@ services:
       - app-network
     environment:
       - REACT_APP_BACKEND_SERVER=http://16.16.163.150:32050/healthcheck
+      
   server:
     build:
       context: ./server

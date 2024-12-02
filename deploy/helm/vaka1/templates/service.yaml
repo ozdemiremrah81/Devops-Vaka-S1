@@ -10,7 +10,7 @@ spec:
   - protocol: TCP
     port: 5050
     targetPort: 5050
-    nodePort: 32050   # External port for server service
+    nodePort: 32050   # The external port to access the service (must be between 30000-32767)
 
 ---
 apiVersion: v1
@@ -23,38 +23,19 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 80              # External port for client service
-    targetPort: 80        # Internal container port
-    nodePort: 32000       # External port for client service
+    port: 80              # External port
+    targetPort: 80      # Internal container port
+    nodePort: 32000   # The external port to access the service (must be between 30000-32767)
 
 ---
 apiVersion: v1
-kind: Ingress
+kind: Service
 metadata:
-  name: {{ .Release.Name }}-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Enforce HTTPS
-    cert-manager.io/cluster-issuer: "letsencrypt-prod" # Use Cert-Manager for TLS
+  name: {{ .Release.Name }}-mongo
 spec:
-  tls:
-  - hosts:
-    - 16.16.163.150
-    secretName: vaka1-client-tls
-  rules:
-  - host: 16.16.163.150
-    http:
-      paths:
-      - path: /healthcheck
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-server
-            port:
-              number: 5050
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-client
-            port:
-              number: 80
+  selector:
+    app: {{ .Release.Name }}-mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017

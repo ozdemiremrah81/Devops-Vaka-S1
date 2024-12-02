@@ -2,7 +2,7 @@
 FROM node:18-alpine as build
 
 # Set environment variables
-ENV REACT_APP_BACKEND_SERVER=https://16.16.163.150:32050/healthcheck/
+ENV REACT_APP_BACKEND_SERVER=http://16.16.163.150:32050/healthcheck/
 
 # Set the working directory
 WORKDIR /usr/src/app

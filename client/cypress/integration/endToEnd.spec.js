@@ -3,16 +3,16 @@ describe("Web site availability", () => {
     cy.contains("Delete").click({ force: true });
   });
   it("Sanity listings web site", () => {
-    cy.visit("https://vaka1.m365.net.tr:3000");
+    cy.visit("http://16.16.163.150:32000");
     cy.contains("Create Record").should("exist");
   });
   it("Test Adding Employee listings", () => {
-    cy.visit("http://16.16.163.150:32000/records");
+    cy.visit("http://16.16.163.150:32000/create");
     cy.get("#name").type("Employee1");
     cy.get("#position").type("Position1");
     cy.get("#positionIntern").click({ force: true });
     cy.contains("Create person").click({ force: true });
-    cy.visit("https://vaka1.m365.net.tr:3000/records");
+    cy.visit("https://vaka1.m365.net.tr:32000/records");
     cy.contains("Employee1").should("exist");
   });
 });

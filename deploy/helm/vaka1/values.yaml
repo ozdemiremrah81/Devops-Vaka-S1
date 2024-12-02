@@ -10,7 +10,7 @@ client:
     repository:  ozdemiremrah81/client
     tag: latest
     pullPolicy: Always
-  port: 3000
+  port: 80
 
 mongo:
   image:

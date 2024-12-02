@@ -23,7 +23,7 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 3000              # External port
+    port: 80              # External port
     targetPort: 80      # Internal container port
     nodePort: 32000   # The external port to access the service (must be between 30000-32767)
 

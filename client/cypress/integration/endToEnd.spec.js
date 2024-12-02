@@ -12,7 +12,7 @@ describe("Web site availability", () => {
     cy.get("#position").type("Position1");
     cy.get("#positionIntern").click({ force: true });
     cy.contains("Create person").click({ force: true });
-    cy.visit("https://vaka1.m365.net.tr:32000/records");
+    cy.visit("https://16.16.163.150:32000/records");
     cy.contains("Employee1").should("exist");
   });
 });

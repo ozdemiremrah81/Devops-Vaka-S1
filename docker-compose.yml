@@ -4,7 +4,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "80:80" # Map local port 80 to the client's exposed port
+      - "3000:80" # Map local port 3000 to the client's exposed port
     depends_on:
       - server
     networks:

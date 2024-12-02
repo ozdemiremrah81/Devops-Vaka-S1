@@ -38,10 +38,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - vaka1.m365.net.tr
+    - 16.16.163.150
     secretName: vaka1-client-tls
   rules:
-  - host: vaka1.m365.net.tr
+  - host: 16.16.163.150
     http:
       paths:
       - path: /healthcheck

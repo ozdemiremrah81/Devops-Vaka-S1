@@ -25,7 +25,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`https://vaka1.m365.net.tr:32050/record/`);
+     const response = await fetch(`https://16.16.163.150:32050/record/`);
 
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -44,7 +44,7 @@ export default function RecordList() {
 
  // This method will delete a record
  async function deleteRecord(id) {
-   await fetch(`https://vaka1.m365.net.tr:32050/record/${id}`, {
+   await fetch(`https://16.16.163.150:32050/record/${id}`, {
      method: "DELETE"
    });
 

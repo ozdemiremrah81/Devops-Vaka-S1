@@ -10,7 +10,7 @@ services:
     networks:
       - app-network
     environment:
-      - REACT_APP_BACKEND_SERVER=https://vaka1.m365.net.tr:32050/healthcheck
+      - REACT_APP_BACKEND_SERVER=https://16.16.163.150:32050/healthcheck
 
   server:
     build:

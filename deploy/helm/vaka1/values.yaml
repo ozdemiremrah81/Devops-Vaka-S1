@@ -25,6 +25,6 @@ mongo:
 
 env:
   REACT_APP_PORT: 3000
-  REACT_APP_API_URL: https://vaka1.m365.net.tr/:5050
+  REACT_APP_API_URL: https://16.16.163.150/:5050
   APP_SERVER_PORT: 5050
-  REACT_APP_BACKEND_SERVER: https://vaka1.m365.net.tr:32050/healthcheck
+  REACT_APP_BACKEND_SERVER: https://16.16.163.150:32050/healthcheck

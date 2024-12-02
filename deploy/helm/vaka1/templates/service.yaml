@@ -20,12 +20,12 @@ metadata:
 spec:
   selector:
     app: {{ .Release.Name }}-client
-  type: NodePort
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80              # External port
     targetPort: 80      # Internal container port
-    nodePort: 32000   # The external port to access the service (must be between 30000-32767)
+    #nodePort: 32000   # The external port to access the service (must be between 30000-32767)
 
 ---
 apiVersion: v1

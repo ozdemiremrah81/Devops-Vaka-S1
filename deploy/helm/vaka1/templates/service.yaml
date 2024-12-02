@@ -28,6 +28,7 @@ spec:
     nodePort: 32000       # External port for client service
 
 ---
+apiVersion: v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress

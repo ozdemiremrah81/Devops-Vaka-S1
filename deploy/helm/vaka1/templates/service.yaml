@@ -46,12 +46,11 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Enforces HTTPS for specified hosts
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" # For TLS-enabled hosts
 spec:
   tls:
   - hosts:
-    - server.{{ .Release.Name }}.m365.net.tr
     - client.{{ .Release.Name }}.m365.net.tr
     secretName: {{ .Release.Name }}-tls
   rules:

@@ -52,7 +52,7 @@ spec:
   tls:
   - hosts:
     - {{ .Release.Name }}.m365.net.tr
-    secretName: {{ .Release.Name }}-tls
+    secretName: {{ .Release.Name }}-client-tls
   rules:
   - host: {{ .Release.Name }}.m365.net.tr
     http:
